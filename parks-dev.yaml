@@ -11,15 +11,15 @@ objects:
       openshift.io/generated-by: OpenShiftNewBuild
     creationTimestamp: null
     labels:
-      build: mlb-parks-dev
-    name: mlb-parks-dev
+      build: mlbparks-dev
+    name: mlbparks-dev
   spec:
     failedBuildsHistoryLimit: 5
     nodeSelector: null
     output:
       to:
         kind: ImageStreamTag
-        name: mlb-parks-dev:latest
+        name: mlbparks-dev:latest
     postCommit: {}
     resources: {}
     runPolicy: Serial
@@ -50,15 +50,15 @@ objects:
       openshift.io/generated-by: OpenShiftNewBuild
     creationTimestamp: null
     labels:
-      build: national-parks-dev
-    name: national-parks-dev
+      build: nationalparks-dev
+    name: nationalparks-dev
   spec:
     failedBuildsHistoryLimit: 5
     nodeSelector: null
     output:
       to:
         kind: ImageStreamTag
-        name: national-parks-dev:latest
+        name: nationalparks-dev:latest
     postCommit: {}
     resources: {}
     runPolicy: Serial
@@ -130,8 +130,8 @@ objects:
     creationTimestamp: null
     generation: 5
     labels:
-      build: mlb-parks-dev
-    name: mlb-parks-dev
+      build: mlbparks-dev
+    name: mlbparks-dev
   spec:
     lookupPolicy:
       local: false
@@ -173,8 +173,8 @@ objects:
     creationTimestamp: null
     generation: 3
     labels:
-      build: national-parks-dev
-    name: national-parks-dev
+      build: nationalparks-dev
+    name: nationalparks-dev
   spec:
     lookupPolicy:
       local: false
@@ -204,14 +204,14 @@ objects:
     creationTimestamp: null
     generation: 1
     labels:
-      app: mlb-parks-dev
-    name: mlb-parks-dev
+      app: mlbparks-dev
+    name: mlbparks-dev
   spec:
     replicas: 1
     revisionHistoryLimit: 10
     selector:
-      app: mlb-parks-dev
-      deploymentconfig: mlb-parks-dev
+      app: mlbparks-dev
+      deploymentconfig: mlbparks-dev
     strategy:
       activeDeadlineSeconds: 21600
       resources: {}
@@ -228,8 +228,8 @@ objects:
           openshift.io/generated-by: OpenShiftNewApp
         creationTimestamp: null
         labels:
-          app: mlb-parks-dev
-          deploymentconfig: mlb-parks-dev
+          app: mlbparks-dev
+          deploymentconfig: mlbparks-dev
       spec:
         containers:
         - env:
@@ -263,7 +263,7 @@ objects:
               configMapKeyRef:
                 key: DB_NAME
                 name: mongodb-config
-          image: docker-registry.default.svc:5000/akkarapol-parks-dev/mlb-parks-dev:0.0-0
+          image: docker-registry.default.svc:5000/akkarapol-parks-dev/mlbparks-dev:0.0-0
           imagePullPolicy: IfNotPresent
           livenessProbe:
             exec:
@@ -275,7 +275,7 @@ objects:
             periodSeconds: 10
             successThreshold: 1
             timeoutSeconds: 1
-          name: mlb-parks-dev
+          name: mlbparks-dev
           readinessProbe:
             failureThreshold: 3
             httpGet:
@@ -411,14 +411,14 @@ objects:
     creationTimestamp: null
     generation: 1
     labels:
-      app: national-parks-dev
-    name: national-parks-dev
+      app: nationalparks-dev
+    name: nationalparks-dev
   spec:
     replicas: 1
     revisionHistoryLimit: 10
     selector:
-      app: national-parks-dev
-      deploymentconfig: national-parks-dev
+      app: nationalparks-dev
+      deploymentconfig: nationalparks-dev
     strategy:
       activeDeadlineSeconds: 21600
       resources: {}
@@ -435,8 +435,8 @@ objects:
           openshift.io/generated-by: OpenShiftNewApp
         creationTimestamp: null
         labels:
-          app: national-parks-dev
-          deploymentconfig: national-parks-dev
+          app: nationalparks-dev
+          deploymentconfig: nationalparks-dev
       spec:
         containers:
         - env:
@@ -470,7 +470,7 @@ objects:
               configMapKeyRef:
                 key: DB_NAME
                 name: mongodb-config
-          image: docker-registry.default.svc:5000/akkarapol-parks-dev/national-parks-dev:0.0-0
+          image: docker-registry.default.svc:5000/akkarapol-parks-dev/nationalparks-dev:0.0-0
           imagePullPolicy: IfNotPresent
           livenessProbe:
             exec:
@@ -482,7 +482,7 @@ objects:
             periodSeconds: 10
             successThreshold: 1
             timeoutSeconds: 1
-          name: national-parks-dev
+          name: nationalparks-dev
           readinessProbe:
             failureThreshold: 3
             httpGet:
@@ -623,16 +623,16 @@ objects:
   metadata:
     creationTimestamp: null
     labels:
-      app: mlb-parks-dev
-    name: mlb-parks-dev
+      app: mlbparks-dev
+    name: mlbparks-dev
   spec:
     ports:
     - port: 8080
       protocol: TCP
       targetPort: 8080
     selector:
-      app: mlb-parks-dev
-      deploymentconfig: mlb-parks-dev
+      app: mlbparks-dev
+      deploymentconfig: mlbparks-dev
     sessionAffinity: None
     type: ClusterIP
   status:
@@ -664,16 +664,16 @@ objects:
   metadata:
     creationTimestamp: null
     labels:
-      app: national-parks-dev
-    name: national-parks-dev
+      app: nationalparks-dev
+    name: nationalparks-dev
   spec:
     ports:
     - port: 8080
       protocol: TCP
       targetPort: 8080
     selector:
-      app: national-parks-dev
-      deploymentconfig: national-parks-dev
+      app: nationalparks-dev
+      deploymentconfig: nationalparks-dev
     sessionAffinity: None
     type: ClusterIP
   status:
@@ -724,14 +724,14 @@ objects:
       openshift.io/host.generated: "true"
     creationTimestamp: null
     labels:
-      app: mlb-parks-dev
-    name: mlb-parks-dev
+      app: mlbparks-dev
+    name: mlbparks-dev
   spec:
     port:
       targetPort: 8080
     to:
       kind: Service
-      name: mlb-parks-dev
+      name: mlbparks-dev
       weight: 100
     wildcardPolicy: None
   status:
@@ -749,14 +749,14 @@ objects:
       openshift.io/host.generated: "true"
     creationTimestamp: null
     labels:
-      app: national-parks-dev
-    name: national-parks-dev
+      app: nationalparks-dev
+    name: nationalparks-dev
   spec:
     port:
       targetPort: 8080
     to:
       kind: Service
-      name: national-parks-dev
+      name: nationalparks-dev
       weight: 100
     wildcardPolicy: None
   status:
