@@ -243,11 +243,6 @@ objects:
               configMapKeyRef:
                 key: DB_PORT
                 name: mongodb-config
-          - name: DB_REPLICASET
-            valueFrom:
-              configMapKeyRef:
-                key: DB_REPLICASET
-                name: mongodb-config
           - name: DB_USERNAME
             valueFrom:
               configMapKeyRef:
@@ -423,32 +418,27 @@ objects:
       spec:
         containers:
         - env:
-          - name: MONGODB_PASSWORD
+          - name: DB_PASSWORD
             valueFrom:
               configMapKeyRef:
                 key: DB_PASSWORD
                 name: mongodb-config
-          - name: MONGODB_PORT
+          - name: DB_PORT
             valueFrom:
               configMapKeyRef:
                 key: DB_PORT
                 name: mongodb-config
-          - name: MONGODB_REPLICASET
-            valueFrom:
-              configMapKeyRef:
-                key: DB_REPLICASET
-                name: mongodb-config
-          - name: MONGODB_USERNAME
+          - name: DB_USERNAME
             valueFrom:
               configMapKeyRef:
                 key: DB_USERNAME
                 name: mongodb-config
-          - name: MONGODB_HOST
+          - name: DB_HOST
             valueFrom:
               configMapKeyRef:
                 key: DB_HOST
                 name: mongodb-config
-          - name: MONGODB_NAME
+          - name: DB_NAME
             valueFrom:
               configMapKeyRef:
                 key: DB_NAME
@@ -686,7 +676,6 @@ objects:
     DB_NAME: parks
     DB_PASSWORD: mongodb
     DB_PORT: "27017"
-    DB_REPLICASET: rs0
     DB_USERNAME: mongodb
   kind: ConfigMap
   metadata:
