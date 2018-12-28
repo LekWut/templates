@@ -560,13 +560,23 @@ objects:
           image: docker-registry.default.svc:5000/akkarapol-parks-dev/parksmap-dev:0.0
           imagePullPolicy: IfNotPresent
           name: parksmap-blue
+          livenessProbe:
+            failureThreshold: 3
+            httpGet:
+              path: /ws/appname
+              port: 8080
+              scheme: HTTP
+            initialDelaySeconds: 60
+            periodSeconds: 10
+            successThreshold: 1
+            timeoutSeconds: 1
           readinessProbe:
             failureThreshold: 3
             httpGet:
-              path: /item.php
+              path: /ws/appname
               port: 8080
               scheme: HTTP
-            initialDelaySeconds: 2
+            initialDelaySeconds: 60
             periodSeconds: 10
             successThreshold: 1
             timeoutSeconds: 1
