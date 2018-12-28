@@ -656,6 +656,8 @@ objects:
     creationTimestamp: null
     labels:
       app: nationalparks-dev
+      role: backend
+      type: parksmap-backend
     name: nationalparks-dev
   spec:
     ports:
