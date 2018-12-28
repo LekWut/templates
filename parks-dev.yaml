@@ -677,6 +677,7 @@ objects:
     creationTimestamp: null
     labels:
       app: parksmap-dev
+      role: fronted
     name: parksmap-dev
   spec:
     ports:
