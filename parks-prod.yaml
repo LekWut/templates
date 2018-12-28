@@ -99,10 +99,10 @@ objects:
           terminationMessagePolicy: File
           volumeMounts:
           - mountPath: /opt/eap/standalone/configuration/application-users.properties
-            name: parks-config
+            name: mlbparks-blue-config
             subPath: application-users.properties
           - mountPath: /opt/eap/standalone/configuration/application-roles.properties
-            name: parks-config1
+            name: mlbparks-blue-config1
             subPath: application-roles.properties
         dnsPolicy: ClusterFirst
         restartPolicy: Always
@@ -112,12 +112,12 @@ objects:
         volumes:
         - configMap:
             defaultMode: 420
-            name: parks-config
-          name: parks-config
+            name: mlbparks-blue-config
+          name: mlbparks-blue-config
         - configMap:
             defaultMode: 420
-            name: parks-config
-          name: parks-config1
+            name: mlbparks-blue-config
+          name: mlbparks-blue-config1
     test: false
     triggers: []
   status:
@@ -222,10 +222,10 @@ objects:
           terminationMessagePolicy: File
           volumeMounts:
           - mountPath: /opt/eap/standalone/configuration/application-users.properties
-            name: parks-config
+            name: mlbparks-green-config
             subPath: application-users.properties
           - mountPath: /opt/eap/standalone/configuration/application-roles.properties
-            name: parks-config1
+            name: mlbparks-green-config1
             subPath: application-roles.properties
         dnsPolicy: ClusterFirst
         restartPolicy: Always
@@ -235,12 +235,12 @@ objects:
         volumes:
         - configMap:
             defaultMode: 420
-            name: parks-green-config
-          name: parks-config
+            name: mlbparks-green-config
+          name: mlbparks-green-config
         - configMap:
             defaultMode: 420
-            name: parks-green-config
-          name: parks-config1
+            name: mlbparks-green-config
+          name: mlbparks-green-config1
     test: false
     triggers: []
   status:
@@ -345,10 +345,10 @@ objects:
           terminationMessagePolicy: File
           volumeMounts:
           - mountPath: /opt/eap/standalone/configuration/application-users.properties
-            name: parks-config
+            name: nationalparks-blue-config
             subPath: application-users.properties
           - mountPath: /opt/eap/standalone/configuration/application-roles.properties
-            name: parks-config1
+            name: nationalparks-blue-config1
             subPath: application-roles.properties
         dnsPolicy: ClusterFirst
         restartPolicy: Always
@@ -358,12 +358,12 @@ objects:
         volumes:
         - configMap:
             defaultMode: 420
-            name: parks-config
-          name: parks-config
+            name: nationalparks-blue-config
+          name: nationalparks-blue-config
         - configMap:
             defaultMode: 420
-            name: parks-config
-          name: parks-config1
+            name: nationalparks-blue-config
+          name: nationalparks-blue-config1
     test: false
     triggers: []
   status:
@@ -468,10 +468,10 @@ objects:
           terminationMessagePolicy: File
           volumeMounts:
           - mountPath: /opt/eap/standalone/configuration/application-users.properties
-            name: parks-config
+            name: nationalparks-green-config
             subPath: application-users.properties
           - mountPath: /opt/eap/standalone/configuration/application-roles.properties
-            name: parks-config1
+            name: nationalparks-green-config1
             subPath: application-roles.properties
         dnsPolicy: ClusterFirst
         restartPolicy: Always
@@ -481,12 +481,12 @@ objects:
         volumes:
         - configMap:
             defaultMode: 420
-            name: parks-green-config
-          name: parks-config
+            name: nationalparks-green-config
+          name: nationalparks-green-config
         - configMap:
             defaultMode: 420
-            name: parks-green-config
-          name: parks-config1
+            name: nationalparks-green-config
+          name: nationalparks-green-config1
     test: false
     triggers: []
   status:
@@ -550,10 +550,10 @@ objects:
           terminationMessagePolicy: File
           volumeMounts:
           - mountPath: /opt/eap/standalone/configuration/application-users.properties
-            name: parks-config
+            name: parksmap-blue-config
             subPath: application-users.properties
           - mountPath: /opt/eap/standalone/configuration/application-roles.properties
-            name: parks-config1
+            name: parksmap-blue-config1
             subPath: application-roles.properties
         dnsPolicy: ClusterFirst
         restartPolicy: Always
@@ -563,12 +563,12 @@ objects:
         volumes:
         - configMap:
             defaultMode: 420
-            name: parks-config
-          name: parks-config
+            name: parksmap-blue-config
+          name: parksmap-blue-config
         - configMap:
             defaultMode: 420
-            name: parks-config
-          name: parks-config1
+            name: parksmap-blue-config
+          name: parksmap-blue-config1
     test: false
     triggers: []
   status:
@@ -632,10 +632,10 @@ objects:
           terminationMessagePolicy: File
           volumeMounts:
           - mountPath: /opt/eap/standalone/configuration/application-users.properties
-            name: parks-config
+            name: parksmap-green-config
             subPath: application-users.properties
           - mountPath: /opt/eap/standalone/configuration/application-roles.properties
-            name: parks-config1
+            name: parksmap-green-config1
             subPath: application-roles.properties
         dnsPolicy: ClusterFirst
         restartPolicy: Always
@@ -645,12 +645,12 @@ objects:
         volumes:
         - configMap:
             defaultMode: 420
-            name: parks-green-config
-          name: parks-config
+            name: parksmap-green-config
+          name: parksmap-green-config
         - configMap:
             defaultMode: 420
-            name: parks-green-config
-          name: parks-config1
+            name: parksmap-green-config
+          name: parksmap-green-config1
     test: false
     triggers: []
   status:
@@ -1011,7 +1011,47 @@ objects:
   kind: ConfigMap
   metadata:
     creationTimestamp: null
-    name: parks-config
+    name: mlbparks-blue-config
+- apiVersion: v1
+  data:
+    application-roles.properties: Placeholder
+    application-users.properties: Placeholder
+  kind: ConfigMap
+  metadata:
+    creationTimestamp: null
+    name: mlbparks-green-config
+- apiVersion: v1
+  data:
+    application-roles.properties: Placeholder
+    application-users.properties: Placeholder
+  kind: ConfigMap
+  metadata:
+    creationTimestamp: null
+    name: nationparks-blue-config
+- apiVersion: v1
+  data:
+    application-roles.properties: Placeholder
+    application-users.properties: Placeholder
+  kind: ConfigMap
+  metadata:
+    creationTimestamp: null
+    name: nationparks-green-config
+- apiVersion: v1
+  data:
+    application-roles.properties: Placeholder
+    application-users.properties: Placeholder
+  kind: ConfigMap
+  metadata:
+    creationTimestamp: null
+    name: parksmap-blue-config
+- apiVersion: v1
+  data:
+    application-roles.properties: Placeholder
+    application-users.properties: Placeholder
+  kind: ConfigMap
+  metadata:
+    creationTimestamp: null
+    name: parksmap-green-config
 - apiVersion: v1
   kind: Route
   metadata:
