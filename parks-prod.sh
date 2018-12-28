@@ -4,3 +4,4 @@ oc new-project ${GUID}-parks-prod
 oc new-app -f parks-prod.yaml
 oc policy add-role-to-group system:image-puller system:serviceaccounts:${GUID}-parks-prod -n ${GUID}-parks-dev
 oc policy add-role-to-user edit system:serviceaccount:${GUID}-jenkins:jenkins -n ${GUID}-parks-prod
+oc policy add-role-to-user view --serviceaccount=default -n ${GUID}-parks-prod
