@@ -12,14 +12,14 @@ objects:
     creationTimestamp: null
     generation: 1
     labels:
-      app: mlb-parks-blue
-    name: mlb-parks-blue
+      app: mlbparks-blue
+    name: mlbparks-blue
   spec:
     replicas: 1
     revisionHistoryLimit: 10
     selector:
-      app: mlb-parks-blue
-      deploymentconfig: mlb-parks-blue
+      app: mlbparks-blue
+      deploymentconfig: mlbparks-blue
     strategy:
       activeDeadlineSeconds: 21600
       resources: {}
@@ -36,51 +36,61 @@ objects:
           openshift.io/generated-by: OpenShiftNewApp
         creationTimestamp: null
         labels:
-          app: mlb-parks-blue
-          deploymentconfig: mlb-parks-blue
+          app: mlbparks-blue
+          deploymentconfig: mlbparks-blue
       spec:
         containers:
         - env:
-          - name: MONGODB_NAME
+          - name: DB_NAME
             valueFrom:
               configMapKeyRef:
                 key: DB_NAME
                 name: mongodb-config
-          - name: MONGODB_PASSWORD
+          - name: DB_PASSWORD
             valueFrom:
               configMapKeyRef:
                 key: DB_PASSWORD
                 name: mongodb-config
-          - name: MONGODB_PORT
+          - name: DB_PORT
             valueFrom:
               configMapKeyRef:
                 key: DB_PORT
                 name: mongodb-config
-          - name: MONGODB_REPLICASET
+          - name: DB_REPLICASET
             valueFrom:
               configMapKeyRef:
                 key: DB_REPLICASET
                 name: mongodb-config
-          - name: MONGODB_USERNAME
+          - name: DB_USERNAME
             valueFrom:
               configMapKeyRef:
                 key: DB_USERNAME
                 name: mongodb-config
-          - name: MONGODB_HOST
+          - name: DB_HOST
             valueFrom:
               configMapKeyRef:
                 key: DB_HOST
                 name: mongodb-config
-          image: docker-registry.default.svc:5000/akkarapol-parks-dev/mlb-parks-dev:0.0
+          image: docker-registry.default.svc:5000/akkarapol-parks-dev/mlbparks-dev:0.0
           imagePullPolicy: IfNotPresent
-          name: mlb-parks-blue
+          name: mlbparks-blue
+          livenessProbe:
+            failureThreshold: 3
+            httpGet:
+              path: /ws/info
+              port: 8080
+              scheme: HTTP
+            initialDelaySeconds: 60
+            periodSeconds: 10
+            successThreshold: 1
+            timeoutSeconds: 1
           readinessProbe:
             failureThreshold: 3
             httpGet:
-              path: /item.php
+              path: /ws/info
               port: 8080
               scheme: HTTP
-            initialDelaySeconds: 2
+            initialDelaySeconds: 60
             periodSeconds: 10
             successThreshold: 1
             timeoutSeconds: 1
@@ -125,14 +135,14 @@ objects:
     creationTimestamp: null
     generation: 1
     labels:
-      app: mlb-parks-green
-    name: mlb-parks-green
+      app: mlbparks-green
+    name: mlbparks-green
   spec:
     replicas: 1
     revisionHistoryLimit: 10
     selector:
-      app: mlb-parks-green
-      deploymentconfig: mlb-parks-green
+      app: mlbparks-green
+      deploymentconfig: mlbparks-green
     strategy:
       activeDeadlineSeconds: 21600
       resources: {}
@@ -149,51 +159,61 @@ objects:
           openshift.io/generated-by: OpenShiftNewApp
         creationTimestamp: null
         labels:
-          app: mlb-parks-green
-          deploymentconfig: mlb-parks-green
+          app: mlbparks-green
+          deploymentconfig: mlbparks-green
       spec:
         containers:
         - env:
-          - name: MONGODB_PORT
+          - name: DB_PORT
             valueFrom:
               configMapKeyRef:
                 key: DB_PORT
                 name: mongodb-config
-          - name: MONGODB_REPLICASET
+          - name: DB_REPLICASET
             valueFrom:
               configMapKeyRef:
                 key: DB_REPLICASET
                 name: mongodb-config
-          - name: MONGODB_USERNAME
+          - name: DB_USERNAME
             valueFrom:
               configMapKeyRef:
                 key: DB_USERNAME
                 name: mongodb-config
-          - name: MONGODB_HOST
+          - name: DB_HOST
             valueFrom:
               configMapKeyRef:
                 key: DB_HOST
                 name: mongodb-config
-          - name: MONGODB_NAME
+          - name: DB_NAME
             valueFrom:
               configMapKeyRef:
                 key: DB_NAME
                 name: mongodb-config
-          - name: MONGODB_PASSWORD
+          - name: DB_PASSWORD
             valueFrom:
               configMapKeyRef:
                 key: DB_PASSWORD
                 name: mongodb-config
-          image: docker-registry.default.svc:5000/akkarapol-parks-dev/mlb-parks-dev:0.0
+          image: docker-registry.default.svc:5000/akkarapol-parks-dev/mlbparks-dev:0.0
           imagePullPolicy: IfNotPresent
-          name: mlb-parks-green
+          name: mlbparks-green
+          livenessProbe:
+            failureThreshold: 3
+            httpGet:
+              path: /ws/info
+              port: 8080
+              scheme: HTTP
+            initialDelaySeconds: 60
+            periodSeconds: 10
+            successThreshold: 1
+            timeoutSeconds: 1
           readinessProbe:
             failureThreshold: 3
             httpGet:
-              path: /item.php
+              path: /ws/info
               port: 8080
               scheme: HTTP
-            initialDelaySeconds: 2
+            initialDelaySeconds: 60
             periodSeconds: 10
             successThreshold: 1
             timeoutSeconds: 1
@@ -238,14 +258,14 @@ objects:
     creationTimestamp: null
     generation: 1
     labels:
-      app: national-parks-blue
-    name: national-parks-blue
+      app: nationalparks-blue
+    name: nationalparks-blue
   spec:
     replicas: 1
     revisionHistoryLimit: 10
     selector:
-      app: national-parks-blue
-      deploymentconfig: national-parks-blue
+      app: nationalparks-blue
+      deploymentconfig: nationalparks-blue
     strategy:
       activeDeadlineSeconds: 21600
       resources: {}
@@ -262,20 +282,30 @@ objects:
           openshift.io/generated-by: OpenShiftNewApp
         creationTimestamp: null
         labels:
-          app: national-parks-blue
-          deploymentconfig: national-parks-blue
+          app: nationalparks-blue
+          deploymentconfig: nationalparks-blue
       spec:
         containers:
-        - image: docker-registry.default.svc:5000/akkarapol-parks-dev/national-parks-dev:0.0
+        - image: docker-registry.default.svc:5000/akkarapol-parks-dev/nationalparks-dev:0.0
           imagePullPolicy: IfNotPresent
-          name: national-parks-blue
+          name: nationalparks-blue
+          livenessProbe:
+            failureThreshold: 3
+            httpGet:
+              path: /ws/info
+              port: 8080
+              scheme: HTTP
+            initialDelaySeconds: 60
+            periodSeconds: 10
+            successThreshold: 1
+            timeoutSeconds: 1
           readinessProbe:
             failureThreshold: 3
             httpGet:
-              path: /item.php
+              path: /ws/info
               port: 8080
               scheme: HTTP
-            initialDelaySeconds: 2
+            initialDelaySeconds: 60
             periodSeconds: 10
             successThreshold: 1
             timeoutSeconds: 1
@@ -320,14 +350,14 @@ objects:
     creationTimestamp: null
     generation: 1
     labels:
-      app: national-parks-green
-    name: national-parks-green
+      app: nationalparks-green
+    name: nationalparks-green
   spec:
     replicas: 1
     revisionHistoryLimit: 10
     selector:
-      app: national-parks-green
-      deploymentconfig: national-parks-green
+      app: nationalparks-green
+      deploymentconfig: nationalparks-green
     strategy:
       activeDeadlineSeconds: 21600
       resources: {}
@@ -344,20 +374,30 @@ objects:
           openshift.io/generated-by: OpenShiftNewApp
         creationTimestamp: null
         labels:
-          app: national-parks-green
-          deploymentconfig: national-parks-green
+          app: nationalparks-green
+          deploymentconfig: nationalparks-green
       spec:
         containers:
-        - image: docker-registry.default.svc:5000/akkarapol-parks-dev/national-parks-dev:0.0
+        - image: docker-registry.default.svc:5000/akkarapol-parks-dev/nationalparks-dev:0.0
           imagePullPolicy: IfNotPresent
-          name: national-parks-green
+          name: nationalparks-green
+          livenessProbe:
+            failureThreshold: 3
+            httpGet:
+              path: /ws/info
+              port: 8080
+              scheme: HTTP
+            initialDelaySeconds: 60
+            periodSeconds: 10
+            successThreshold: 1
+            timeoutSeconds: 1
           readinessProbe:
             failureThreshold: 3
             httpGet:
-              path: /item.php
+              path: /ws/info
               port: 8080
               scheme: HTTP
-            initialDelaySeconds: 2
+            initialDelaySeconds: 60
             periodSeconds: 10
             successThreshold: 1
             timeoutSeconds: 1
@@ -565,7 +605,7 @@ objects:
       openshift.io/image.dockerRepositoryCheck: 2018-12-23T07:25:51Z
     creationTimestamp: null
     generation: 2
-    name: mlb-parks-blue
+    name: mlbparks-blue
   spec:
     lookupPolicy:
       local: false
@@ -578,7 +618,7 @@ objects:
       openshift.io/image.dockerRepositoryCheck: 2018-12-23T07:28:39Z
     creationTimestamp: null
     generation: 2
-    name: mlb-parks-green
+    name: mlbparks-green
   spec:
     lookupPolicy:
       local: false
@@ -591,7 +631,7 @@ objects:
       openshift.io/image.dockerRepositoryCheck: 2018-12-23T07:57:06Z
     creationTimestamp: null
     generation: 2
-    name: national-parks-blue
+    name: nationalparks-blue
   spec:
     lookupPolicy:
       local: false
@@ -604,7 +644,7 @@ objects:
       openshift.io/image.dockerRepositoryCheck: 2018-12-23T08:00:34Z
     creationTimestamp: null
     generation: 2
-    name: national-parks-green
+    name: nationalparks-green
   spec:
     lookupPolicy:
       local: false
@@ -641,16 +681,18 @@ objects:
   metadata:
     creationTimestamp: null
     labels:
-      app: mlb-parks-blue
-    name: mlb-parks-blue
+      app: mlbparks-blue
+      role: backend
+      type: parksmap-backend
+    name: mlbparks-blue
   spec:
     ports:
     - port: 8080
       protocol: TCP
       targetPort: 8080
     selector:
-      app: mlb-parks-blue
-      deploymentconfig: mlb-parks-blue
+      app: mlbparks-blue
+      deploymentconfig: mlbparks-blue
     sessionAffinity: None
     type: ClusterIP
   status:
@@ -660,16 +702,18 @@ objects:
   metadata:
     creationTimestamp: null
     labels:
-      app: mlb-parks-green
-    name: mlb-parks-green
+      app: mlbparks-green
+      role: backend
+      type: parksmap-backend
+    name: mlbparks-green
   spec:
     ports:
     - port: 8080
       protocol: TCP
       targetPort: 8080
     selector:
-      app: mlb-parks-green
-      deploymentconfig: mlb-parks-green
+      app: mlbparks-green
+      deploymentconfig: mlbparks-green
     sessionAffinity: None
     type: ClusterIP
   status:
@@ -720,16 +764,18 @@ objects:
   metadata:
     creationTimestamp: null
     labels:
-      app: national-parks-blue
-    name: national-parks-blue
+      app: nationalparks-blue
+      role: backend
+      type: parksmap-backend
+    name: nationalparks-blue
   spec:
     ports:
     - port: 8080
       protocol: TCP
       targetPort: 8080
     selector:
-      app: national-parks-blue
-      deploymentconfig: national-parks-blue
+      app: nationalparks-blue
+      deploymentconfig: nationalparks-blue
     sessionAffinity: None
     type: ClusterIP
   status:
@@ -739,16 +785,18 @@ objects:
   metadata:
     creationTimestamp: null
     labels:
-      app: national-parks-green
-    name: national-parks-green
+      app: nationalparks-green
+      role: backend
+      type: parksmap-backend
+    name: nationalparks-green
   spec:
     ports:
     - port: 8080
       protocol: TCP
       targetPort: 8080
     selector:
-      app: national-parks-green
-      deploymentconfig: national-parks-green
+      app: nationalparks-green
+      deploymentconfig: nationalparks-green
     sessionAffinity: None
     type: ClusterIP
   status:
@@ -948,14 +996,15 @@ objects:
       openshift.io/host.generated: "true"
     creationTimestamp: null
     labels:
-      app: mlb-parks-blue
-    name: mlb-parks
+      app: mlbparks
+      type: parksmap-backend
+    name: mlbparks
   spec:
     port:
       targetPort: 8080
     to:
       kind: Service
-      name: mlb-parks-blue
+      name: mlbparks-blue
       weight: 100
     wildcardPolicy: None
   status:
@@ -973,8 +1022,8 @@ objects:
       openshift.io/host.generated: "true"
     creationTimestamp: null
     labels:
-      app: parksmap-blue
-    name: national
+      app: parksmap
+    name: parksmap
   spec:
     port:
       targetPort: 8080
@@ -998,14 +1047,15 @@ objects:
       openshift.io/host.generated: "true"
     creationTimestamp: null
     labels:
-      app: national-parks-blue
-    name: national-parks
+      app: nationalparks
+      type: parksmap-backend
+    name: nationalparks
   spec:
     port:
       targetPort: 8080
     to:
       kind: Service
-      name: national-parks-blue
+      name: nationalparks-blue
       weight: 100
     wildcardPolicy: None
   status:
