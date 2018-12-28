@@ -300,7 +300,7 @@ objects:
           - name: APPNAME
             valueFrom:
               configMapKeyRef:
-                key: natparks-blue
+                key: nationalparks-blue
                 name: appname
           - name: DB_NAME
             valueFrom:
@@ -428,7 +428,7 @@ objects:
           - name: APPNAME
             valueFrom:
               configMapKeyRef:
-                key: natparks-green
+                key: nationalparks-green
                 name: appname
           - name: DB_NAME
             valueFrom:
@@ -552,44 +552,45 @@ objects:
           deploymentconfig: parksmap-blue
       spec:
         containers:
-        - name: APPNAME
-          valueFrom:
-            configMapKeyRef:
-              key: parksmap-blue
-              name: appname
-          image: docker-registry.default.svc:5000/akkarapol-parks-dev/parksmap-dev:0.0
-          imagePullPolicy: IfNotPresent
-          name: parksmap-blue
-          livenessProbe:
-            failureThreshold: 3
-            httpGet:
-              path: /ws/healthz/
-              port: 8080
-              scheme: HTTP
-            initialDelaySeconds: 60
-            periodSeconds: 10
-            successThreshold: 1
-            timeoutSeconds: 1
-          readinessProbe:
-            failureThreshold: 3
-            httpGet:
-              path: /ws/healthz/
-              port: 8080
-              scheme: HTTP
-            initialDelaySeconds: 60
-            periodSeconds: 10
-            successThreshold: 1
-            timeoutSeconds: 1
-          resources: {}
-          terminationMessagePath: /dev/termination-log
-          terminationMessagePolicy: File
-          volumeMounts:
-          - mountPath: /opt/eap/standalone/configuration/application-users.properties
-            name: parksmap-blue-config
-            subPath: application-users.properties
-          - mountPath: /opt/eap/standalone/configuration/application-roles.properties
-            name: parksmap-blue-config1
-            subPath: application-roles.properties
+        - env:
+          - name: APPNAME
+            valueFrom:
+              configMapKeyRef:
+                key: parksmap-blue
+                name: appname
+            image: docker-registry.default.svc:5000/akkarapol-parks-dev/parksmap-dev:0.0
+            imagePullPolicy: IfNotPresent
+            name: parksmap-blue
+            livenessProbe:
+              failureThreshold: 3
+              httpGet:
+                path: /ws/healthz/
+                port: 8080
+                scheme: HTTP
+              initialDelaySeconds: 60
+              periodSeconds: 10
+              successThreshold: 1
+              timeoutSeconds: 1
+            readinessProbe:
+              failureThreshold: 3
+              httpGet:
+                path: /ws/healthz/
+                port: 8080
+                scheme: HTTP
+              initialDelaySeconds: 60
+              periodSeconds: 10
+              successThreshold: 1
+              timeoutSeconds: 1
+            resources: {}
+            terminationMessagePath: /dev/termination-log
+            terminationMessagePolicy: File
+            volumeMounts:
+            - mountPath: /opt/eap/standalone/configuration/application-users.properties
+              name: parksmap-blue-config
+              subPath: application-users.properties
+            - mountPath: /opt/eap/standalone/configuration/application-roles.properties
+              name: parksmap-blue-config1
+              subPath: application-roles.properties
         dnsPolicy: ClusterFirst
         restartPolicy: Always
         schedulerName: default-scheduler
@@ -649,44 +650,45 @@ objects:
           deploymentconfig: parksmap-green
       spec:
         containers:
-        - name: APPNAME
-          valueFrom:
-            configMapKeyRef:
-              key: parksmap-green
-              name: appname
-          image: docker-registry.default.svc:5000/akkarapol-parks-dev/parksmap-dev:0.0
-          imagePullPolicy: IfNotPresent
-          name: parksmap-green
-          livenessProbe:
-            failureThreshold: 3
-            httpGet:
-              path: /ws/healthz/
-              port: 8080
-              scheme: HTTP
-            initialDelaySeconds: 60
-            periodSeconds: 10
-            successThreshold: 1
-            timeoutSeconds: 1
-          readinessProbe:
-            failureThreshold: 3
-            httpGet:
-              path: /ws/healthz/
-              port: 8080
-              scheme: HTTP
-            initialDelaySeconds: 60
-            periodSeconds: 10
-            successThreshold: 1
-            timeoutSeconds: 1
-          resources: {}
-          terminationMessagePath: /dev/termination-log
-          terminationMessagePolicy: File
-          volumeMounts:
-          - mountPath: /opt/eap/standalone/configuration/application-users.properties
-            name: parksmap-green-config
-            subPath: application-users.properties
-          - mountPath: /opt/eap/standalone/configuration/application-roles.properties
-            name: parksmap-green-config1
-            subPath: application-roles.properties
+        - env:
+          - name: APPNAME
+            valueFrom:
+              configMapKeyRef:
+                key: parksmap-green
+                name: appname
+            image: docker-registry.default.svc:5000/akkarapol-parks-dev/parksmap-dev:0.0
+            imagePullPolicy: IfNotPresent
+            name: parksmap-green
+            livenessProbe:
+              failureThreshold: 3
+              httpGet:
+                path: /ws/healthz/
+                port: 8080
+                scheme: HTTP
+              initialDelaySeconds: 60
+              periodSeconds: 10
+              successThreshold: 1
+              timeoutSeconds: 1
+            readinessProbe:
+              failureThreshold: 3
+              httpGet:
+                path: /ws/healthz/
+                port: 8080
+                scheme: HTTP
+              initialDelaySeconds: 60
+              periodSeconds: 10
+              successThreshold: 1
+              timeoutSeconds: 1
+            resources: {}
+            terminationMessagePath: /dev/termination-log
+            terminationMessagePolicy: File
+            volumeMounts:
+            - mountPath: /opt/eap/standalone/configuration/application-users.properties
+              name: parksmap-green-config
+              subPath: application-users.properties
+            - mountPath: /opt/eap/standalone/configuration/application-roles.properties
+              name: parksmap-green-config1
+              subPath: application-roles.properties
         dnsPolicy: ClusterFirst
         restartPolicy: Always
         schedulerName: default-scheduler
@@ -1028,8 +1030,8 @@ objects:
   data:
     mlbparks-green: MLB Parks (Green)
     mlbparks-blue: MLB Parks (Blue)
-    natparks-green: National Parks (Green)
-    natparks-blue: National Parks (Blue)
+    nationalparks-green: National Parks (Green)
+    nationalparks-blue: National Parks (Blue)
     parksmap-green: ParksMap (Green)
     parksmap-blue: ParksMap (Blue)
   kind: ConfigMap
