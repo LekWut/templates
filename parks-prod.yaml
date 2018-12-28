@@ -41,6 +41,11 @@ objects:
       spec:
         containers:
         - env:
+          - name: APPNAME
+            valueFrom:
+              configMapKeyRef:
+                key: mlbparks-blue
+                name: appname
           - name: DB_NAME
             valueFrom:
               configMapKeyRef:
@@ -164,6 +169,11 @@ objects:
       spec:
         containers:
         - env:
+          - name: APPNAME
+            valueFrom:
+              configMapKeyRef:
+                key: mlbparks-green
+                name: appname
           - name: DB_PORT
             valueFrom:
               configMapKeyRef:
@@ -287,6 +297,11 @@ objects:
       spec:
         containers:
         - env:
+          - name: APPNAME
+            valueFrom:
+              configMapKeyRef:
+                key: nationalparks-blue
+                name: appname
           - name: DB_NAME
             valueFrom:
               configMapKeyRef:
@@ -410,6 +425,11 @@ objects:
       spec:
         containers:
         - env:
+          - name: APPNAME
+            valueFrom:
+              configMapKeyRef:
+                key: nationalparks-green
+                name: appname
           - name: DB_NAME
             valueFrom:
               configMapKeyRef:
@@ -532,16 +552,31 @@ objects:
           deploymentconfig: parksmap-blue
       spec:
         containers:
-        - image: docker-registry.default.svc:5000/akkarapol-parks-dev/parksmap-dev:0.0
+        - name: APPNAME
+          valueFrom:
+            configMapKeyRef:
+              key: parksmap-blue
+              name: appname
+          image: docker-registry.default.svc:5000/akkarapol-parks-dev/parksmap-dev:0.0
           imagePullPolicy: IfNotPresent
           name: parksmap-blue
+          livenessProbe:
+            failureThreshold: 3
+            httpGet:
+              path: /ws/appname
+              port: 8080
+              scheme: HTTP
+            initialDelaySeconds: 60
+            periodSeconds: 10
+            successThreshold: 1
+            timeoutSeconds: 1
           readinessProbe:
             failureThreshold: 3
             httpGet:
-              path: /item.php
+              path: /ws/appname
               port: 8080
               scheme: HTTP
-            initialDelaySeconds: 2
+            initialDelaySeconds: 60
             periodSeconds: 10
             successThreshold: 1
             timeoutSeconds: 1
@@ -614,16 +649,31 @@ objects:
           deploymentconfig: parksmap-green
       spec:
         containers:
-        - image: docker-registry.default.svc:5000/akkarapol-parks-dev/parksmap-dev:0.0
+        - name: APPNAME
+          valueFrom:
+            configMapKeyRef:
+              key: parksmap-green
+              name: appname
+          image: docker-registry.default.svc:5000/akkarapol-parks-dev/parksmap-dev:0.0
           imagePullPolicy: IfNotPresent
           name: parksmap-green
+          livenessProbe:
+            failureThreshold: 3
+            httpGet:
+              path: /ws/appname
+              port: 8080
+              scheme: HTTP
+            initialDelaySeconds: 60
+            periodSeconds: 10
+            successThreshold: 1
+            timeoutSeconds: 1
           readinessProbe:
             failureThreshold: 3
             httpGet:
-              path: /item.php
+              path: /ws/appname
               port: 8080
               scheme: HTTP
-            initialDelaySeconds: 2
+            initialDelaySeconds: 60
             periodSeconds: 10
             successThreshold: 1
             timeoutSeconds: 1
@@ -1052,6 +1102,18 @@ objects:
   metadata:
     creationTimestamp: null
     name: parksmap-green-config
+- apiVersion: v1
+  data:
+    mlbparks-green: MLB Parks (Green)
+    mlbparks-blue: MLB Parks (Blue)
+    nationalparks-green: National Parks (Green)
+    nationalparks-blue: National Parks (Blue)
+    parksmap-green: ParksMap (Green)
+    parksmap-blue: ParksMap (Blue)
+  kind: ConfigMap
+  metadata:
+    creationTimestamp: null
+    name: appname
 - apiVersion: v1
   kind: Route
   metadata:
