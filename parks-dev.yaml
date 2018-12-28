@@ -284,11 +284,27 @@ objects:
           resources: {}
           terminationMessagePath: /dev/termination-log
           terminationMessagePolicy: File
+          volumeMounts:
+          - mountPath: /opt/eap/standalone/configuration/application-users.properties
+            name: mlbparks-config
+            subPath: application-users.properties
+          - mountPath: /opt/eap/standalone/configuration/application-roles.properties
+            name: mlbparks-config1
+            subPath: application-roles.properties
         dnsPolicy: ClusterFirst
         restartPolicy: Always
         schedulerName: default-scheduler
         securityContext: {}
         terminationGracePeriodSeconds: 30
+        volumes:
+        - configMap:
+            defaultMode: 420
+            name: mlbparks-config
+          name: mlbparks-config
+        - configMap:
+            defaultMode: 420
+            name: mlbparks-config
+          name: mlbparks-config1
     test: false
     triggers: []
   status:
@@ -681,6 +697,14 @@ objects:
   metadata:
     creationTimestamp: null
     name: mongodb-config
+- apiVersion: v1
+  data:
+    application-roles.properties: Placeholder
+    application-users.properties: Placeholder
+  kind: ConfigMap
+  metadata:
+    creationTimestamp: null
+    name: mlbparks-config
 - apiVersion: v1
   data:
     application-roles.properties: Placeholder
