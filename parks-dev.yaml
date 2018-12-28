@@ -265,6 +265,7 @@ objects:
                 name: mongodb-config
           image: docker-registry.default.svc:5000/akkarapol-parks-dev/mlbparks-dev:0.0-0
           imagePullPolicy: IfNotPresent
+          name: mlbparks-dev
           livenessProbe:
             failureThreshold: 3
             httpGet:
@@ -274,8 +275,7 @@ objects:
             initialDelaySeconds: 60
             periodSeconds: 10
             successThreshold: 1
-            timeoutSeconds: 1
-          name: mlbparks-dev
+            timeoutSeconds: 1          
           readinessProbe:
             failureThreshold: 3
             httpGet:
@@ -470,23 +470,23 @@ objects:
                 key: DB_NAME
                 name: mongodb-config
           image: docker-registry.default.svc:5000/akkarapol-parks-dev/nationalparks-dev:0.0-0
-          imagePullPolicy: IfNotPresent
+          imagePullPolicy: IfNotPresent          
+          name: nationalparks-dev
           livenessProbe:
-            exec:
-              command:
-              - echo
-              - ok
             failureThreshold: 3
+            httpGet:
+              path: /ws/info
+              port: 8080
+              scheme: HTTP
             initialDelaySeconds: 60
             periodSeconds: 10
             successThreshold: 1
-            timeoutSeconds: 1
-          name: nationalparks-dev
+            timeoutSeconds: 1          
           readinessProbe:
             failureThreshold: 3
             httpGet:
-              path: /
-              port: 8081
+              path: /ws/info
+              port: 8080
               scheme: HTTP
             initialDelaySeconds: 60
             periodSeconds: 10
