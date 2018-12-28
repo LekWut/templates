@@ -999,7 +999,7 @@ objects:
   kind: ConfigMap
   metadata:
     creationTimestamp: null
-    name: nationparks-blue-config
+    name: nationalparks-blue-config
 - apiVersion: v1
   data:
     application-roles.properties: Placeholder
@@ -1007,7 +1007,7 @@ objects:
   kind: ConfigMap
   metadata:
     creationTimestamp: null
-    name: nationparks-green-config
+    name: nationalparks-green-config
 - apiVersion: v1
   data:
     application-roles.properties: Placeholder
