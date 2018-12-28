@@ -286,7 +286,38 @@ objects:
           deploymentconfig: nationalparks-blue
       spec:
         containers:
-        - image: docker-registry.default.svc:5000/akkarapol-parks-dev/nationalparks-dev:0.0
+        - env:
+          - name: DB_NAME
+            valueFrom:
+              configMapKeyRef:
+                key: DB_NAME
+                name: mongodb-config
+          - name: DB_PASSWORD
+            valueFrom:
+              configMapKeyRef:
+                key: DB_PASSWORD
+                name: mongodb-config
+          - name: DB_PORT
+            valueFrom:
+              configMapKeyRef:
+                key: DB_PORT
+                name: mongodb-config
+          - name: DB_REPLICASET
+            valueFrom:
+              configMapKeyRef:
+                key: DB_REPLICASET
+                name: mongodb-config
+          - name: DB_USERNAME
+            valueFrom:
+              configMapKeyRef:
+                key: DB_USERNAME
+                name: mongodb-config
+          - name: DB_HOST
+            valueFrom:
+              configMapKeyRef:
+                key: DB_HOST
+                name: mongodb-config
+          image: docker-registry.default.svc:5000/akkarapol-parks-dev/nationalparks-dev:0.0
           imagePullPolicy: IfNotPresent
           name: nationalparks-blue
           livenessProbe:
@@ -378,7 +409,38 @@ objects:
           deploymentconfig: nationalparks-green
       spec:
         containers:
-        - image: docker-registry.default.svc:5000/akkarapol-parks-dev/nationalparks-dev:0.0
+        - env:
+          - name: DB_NAME
+            valueFrom:
+              configMapKeyRef:
+                key: DB_NAME
+                name: mongodb-config
+          - name: DB_PASSWORD
+            valueFrom:
+              configMapKeyRef:
+                key: DB_PASSWORD
+                name: mongodb-config
+          - name: DB_PORT
+            valueFrom:
+              configMapKeyRef:
+                key: DB_PORT
+                name: mongodb-config
+          - name: DB_REPLICASET
+            valueFrom:
+              configMapKeyRef:
+                key: DB_REPLICASET
+                name: mongodb-config
+          - name: DB_USERNAME
+            valueFrom:
+              configMapKeyRef:
+                key: DB_USERNAME
+                name: mongodb-config
+          - name: DB_HOST
+            valueFrom:
+              configMapKeyRef:
+                key: DB_HOST
+                name: mongodb-config
+          image: docker-registry.default.svc:5000/akkarapol-parks-dev/nationalparks-dev:0.0
           imagePullPolicy: IfNotPresent
           name: nationalparks-green
           livenessProbe:
@@ -950,45 +1012,6 @@ objects:
   metadata:
     creationTimestamp: null
     name: parks-config
-- apiVersion: v1
-  kind: PersistentVolumeClaim
-  metadata:
-    labels:
-      name: mongodb
-    name: mongo-data-mongodb-0
-  spec:
-    accessModes:
-    - ReadWriteOnce
-    resources:
-      requests:
-        storage: 4Gi
-  status: {}
-- apiVersion: v1
-  kind: PersistentVolumeClaim
-  metadata:
-    labels:
-      name: mongodb
-    name: mongo-data-mongodb-1
-  spec:
-    accessModes:
-    - ReadWriteOnce
-    resources:
-      requests:
-        storage: 4Gi
-  status: {}
-- apiVersion: v1
-  kind: PersistentVolumeClaim
-  metadata:
-    labels:
-      name: mongodb
-    name: mongo-data-mongodb-2
-  spec:
-    accessModes:
-    - ReadWriteOnce
-    resources:
-      requests:
-        storage: 4Gi
-  status: {}
 - apiVersion: v1
   kind: Route
   metadata:
