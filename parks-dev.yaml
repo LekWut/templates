@@ -497,10 +497,10 @@ objects:
           terminationMessagePolicy: File
           volumeMounts:
           - mountPath: /opt/eap/standalone/configuration/application-users.properties
-            name: parks-config
+            name: nationalparks-config
             subPath: application-users.properties
           - mountPath: /opt/eap/standalone/configuration/application-roles.properties
-            name: parks-config1
+            name: nationalparks-config1
             subPath: application-roles.properties
         dnsPolicy: ClusterFirst
         restartPolicy: Always
@@ -510,12 +510,12 @@ objects:
         volumes:
         - configMap:
             defaultMode: 420
-            name: parks-config
-          name: parks-config
+            name: nationalparks-config
+          name: nationalparks-config
         - configMap:
             defaultMode: 420
-            name: parks-config
-          name: parks-config1
+            name: nationalparks-config
+          name: nationalparks-config1
     test: false
     triggers: []
   status:
@@ -595,10 +595,10 @@ objects:
           terminationMessagePolicy: File
           volumeMounts:
           - mountPath: /opt/eap/standalone/configuration/application-users.properties
-            name: parks-config
+            name: parksmap-config
             subPath: application-users.properties
           - mountPath: /opt/eap/standalone/configuration/application-roles.properties
-            name: parks-config1
+            name: parksmap-config1
             subPath: application-roles.properties
         dnsPolicy: ClusterFirst
         restartPolicy: Always
@@ -608,12 +608,12 @@ objects:
         volumes:
         - configMap:
             defaultMode: 420
-            name: parks-config
-          name: parks-config
+            name: parksmap-config
+          name: parksmap-config
         - configMap:
             defaultMode: 420
-            name: parks-config
-          name: parks-config1
+            name: parksmap-config
+          name: parksmap-config1
     test: false
     triggers: []
   status:
@@ -733,7 +733,15 @@ objects:
   kind: ConfigMap
   metadata:
     creationTimestamp: null
-    name: parks-config
+    name: nationalparks-config
+- apiVersion: v1
+  data:
+    application-roles.properties: Placeholder
+    application-users.properties: Placeholder
+  kind: ConfigMap
+  metadata:
+    creationTimestamp: null
+    name: parksmap-config
 - apiVersion: v1
   data:
     mlbparks-dev: MLB Parks (Dev)
