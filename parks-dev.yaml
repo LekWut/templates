@@ -233,6 +233,11 @@ objects:
       spec:
         containers:
         - env:
+          - name: APPNAME
+            valueFrom:
+              configMapKeyRef:
+                key: mlbparks-dev
+                name: appname
           - name: DB_PASSWORD
             valueFrom:
               configMapKeyRef:
@@ -434,6 +439,11 @@ objects:
       spec:
         containers:
         - env:
+          - name: APPNAME
+            valueFrom:
+              configMapKeyRef:
+                key: nationalparks-dev
+                name: appname
           - name: DB_PASSWORD
             valueFrom:
               configMapKeyRef:
@@ -551,7 +561,13 @@ objects:
           deploymentconfig: parksmap-dev
       spec:
         containers:
-        - image: docker-registry.default.svc:5000/akkarapol-parks-dev/parksmap-dev:0.0-0
+        - env:
+          - name: APPNAME
+            valueFrom:
+              configMapKeyRef:
+                key: parksmap-dev
+                name: appname
+          image: docker-registry.default.svc:5000/akkarapol-parks-dev/parksmap-dev:0.0-0
           imagePullPolicy: IfNotPresent
           livenessProbe:
             exec:
@@ -718,6 +734,15 @@ objects:
   metadata:
     creationTimestamp: null
     name: parks-config
+- apiVersion: v1
+  data:
+    mlbparks-dev: MLB Parks (Dev)
+    nationalparks-dev: National Parks (Dev)
+    parksmap-dev: ParksMap (Dev)
+  kind: ConfigMap
+  metadata:
+    creationTimestamp: null
+    name: appname
 - apiVersion: v1
   kind: Route
   metadata:
